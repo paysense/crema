@@ -1,0 +1,4 @@
+[flake8]
+ignore = F401,W503
+exclude = .git,__pycache__,*migrations*,.tox,.idea,manage.py
+max-line-length = 94

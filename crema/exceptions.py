@@ -1,0 +1,2 @@
+class KafkaException(Exception):
+    pass
