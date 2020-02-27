@@ -1,0 +1,2 @@
+kafka-python==1.4.7
+uhashring==1.1
