@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='crema',
@@ -8,5 +8,6 @@ setup(
     author='Rohit Laddha',
     author_email='rohit.laddha@paysense.in',
     packages=['crema'],
-    zip_safe=False
+    zip_safe=False,
+    packages=find_packages(),
 )
