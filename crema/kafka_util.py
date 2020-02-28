@@ -27,7 +27,9 @@ class KafkaUtil:
             )
 
     def push(self, data):
-        assert config.ENABLED is True, "Please set ENABLE_KAFKA env variable to True to push events"
+        if config.ENABLED is False:
+            LOGGER.info("Please set ENABLE_KAFKA env variable to True to push events")
+            return
 
         master_user_id = data["meta_data"]["master_user_id"]
         event_type = data["meta_data"]["event_type"]
