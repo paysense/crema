@@ -1,15 +1,14 @@
 import json
 import logging
 
+from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
 from .config import ENABLED, KAFKA_BOOTSTRAP_SERVERS
-from kafka import KafkaProducer
-
 from .exceptions import KafkaException
 from .hashing import PartitionHashing
 
-LOGGER = logging.getLogger('kafka_util')
+LOGGER = logging.getLogger("kafka_util")
 
 
 class KafkaUtil:
@@ -36,17 +35,23 @@ class KafkaUtil:
         event_type = data["meta_data"]["event_type"]
         partition = PartitionHashing.get_partition(master_user_id)
 
-        payload = data["payload"]
-
         future = self.producer.send(event_type, data, partition=partition,)
         try:
             record_metadata = future.get(timeout=10)
+            # not using f"" style as python 3.4 is used at AMS and doesn't support this style
             LOGGER.debug(
-                f"Successfully published data: {data}, with topic: {record_metadata.topic}, on partition: "
-                f"{record_metadata.partition} with offset: {record_metadata.offset}"
+                (
+                    "Successfully published data: {data}, with topic: {topic}, on partition: "
+                    "{partition} with offset: {offset}"
+                ).format(
+                    data=data,
+                    topic=record_metadata.topic,
+                    partition=record_metadata.partition,
+                    offset=record_metadata.offset,
+                )
             )
         except KafkaError as e:
-            msg = f"{str(e)}, partition: {partition}, data: {data}"
+            msg = "{e}, partition: {partition}, data: {data}".format(e=str(e), partition=partition, data=data)
             LOGGER.exception(msg)
             raise KafkaException(msg)
 
