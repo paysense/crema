@@ -19,17 +19,21 @@ class KafkaUtil:
     """
 
     def __init__(self):
-        if ENABLED is True:
-            self.producer = KafkaProducer(
-                bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
-                value_serializer=lambda v: json.dumps(v).encode("utf-8"),
-                api_version=(8,),
-            )
+        self.producer = None
 
     def push(self, data):
         if ENABLED is False:
             LOGGER.info("Please set ENABLE_KAFKA env variable to True to push events")
             return
+
+        if self.producer is None:
+            # initialise kafkaProducer only when its about to send events. It avoids creating unnecessary connection
+            # to kafka cluster.
+            self.producer = KafkaProducer(
+                bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
+                value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+                api_version=(8,),
+            )
 
         master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
@@ -51,7 +55,9 @@ class KafkaUtil:
                 )
             )
         except KafkaError as e:
-            msg = "{e}, partition: {partition}, data: {data}".format(e=str(e), partition=partition, data=data)
+            msg = "{e}, partition: {partition}, data: {data}".format(
+                e=str(e), partition=partition, data=data
+            )
             LOGGER.exception(msg)
             raise KafkaException(msg)
 
