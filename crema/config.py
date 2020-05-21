@@ -1,7 +1,5 @@
 import os
 
-PARTITIONS = 16
-
 kafka_servers = os.environ.get("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 KAFKA_BOOTSTRAP_SERVERS = kafka_servers.split(",")
 

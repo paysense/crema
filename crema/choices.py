@@ -19,3 +19,23 @@ class EventType(Enum):
 
     #USER_ACTIVITY
     USER_ACTIVITY = "USER_ACTIVITY"
+
+
+class EventPartition(Enum):
+    # PSCORE
+    USER = 64
+    LOAN_APPLICATION = 64
+    DOCUMENT = 64
+    LOAN = 64
+    USER_INFO_REQUEST = 64
+    EMPLOYMENT = 64
+    DEBIT_INSTRUCTION = 64
+    ADDRESS = 64
+    BANK_ACCOUNT = 64
+    INCOME_VERIFICATION = 64
+
+    #AMS
+    ASSESSMENT = 64
+
+    #USER_ACTIVITY
+    USER_ACTIVITY = 256
