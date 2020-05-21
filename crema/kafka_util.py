@@ -37,7 +37,7 @@ class KafkaUtil:
 
         master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
-        partition = PartitionHashing.get_partition(master_user_id)
+        partition = PartitionHashing.get_partition(master_user_id, event_type)
 
         future = self.producer.send(event_type, data, partition=partition,)
         try:
