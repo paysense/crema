@@ -22,7 +22,7 @@ class KafkaUtil:
 
     def __init__(self, kafka_vars=None):
         self._kafka_producer = None
-        self.kafka_vars = kafka_vars
+        self.kafka_vars = kafka_vars or {}
 
     @property
     def producer(self):
