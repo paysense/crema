@@ -1,5 +1,7 @@
 import json
 import logging
+import time
+import uuid
 
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
@@ -33,7 +35,7 @@ class KafkaUtil:
                 bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
                 value_serializer=lambda v: json.dumps(v).encode("utf-8"),
                 api_version=(8,),
-                **self.kafka_vars
+                **self.kafka_vars,
             )
         return self._kafka_producer
 
@@ -74,13 +76,26 @@ class KafkaUtil:
             LOGGER.info("Please set ENABLE_KAFKA env variable to True to push events")
             return
 
+        uid = str(uuid.uuid4())
+        start_time = time.time()
         master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
         partition = PartitionHashing.get_partition(master_user_id, event_type)
+        LOGGER.debug(
+            "time take to get partition for uid:{uid} {t}".format(
+                uid=uid, t=(time.time() - start_time)
+            )
+        )
 
+        start_time = time.time()
         self.producer.send(event_type, data, partition=partition,).add_callback(
             self._success_callback, data
         ).add_errback(self._error_callback, data, partition)
+        LOGGER.debug(
+            "time take to publish for uid:{uid} {t}".format(
+                uid=uid, t=(time.time() - start_time)
+            )
+        )
 
     def push(self, data):
         if ENABLED is False:
