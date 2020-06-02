@@ -3,7 +3,6 @@ from .choices import EventPartition
 
 
 class PartitionHashing:
-
     _hash_rings_dict = {}
 
     @classmethod

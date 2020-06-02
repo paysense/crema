@@ -36,6 +36,7 @@ class EventPartition(Enum):
 
     #AMS
     ASSESSMENT = 64
+    PRODUCT_ELIGIBILITY = 64
 
     #USER_ACTIVITY
     USER_ACTIVITY = 256
