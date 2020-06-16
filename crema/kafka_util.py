@@ -127,7 +127,3 @@ class KafkaUtil:
             )
             LOGGER.exception(msg)
             raise KafkaException(msg)
-
-
-# todo should deprecate below when all the clients have update the lib versin
-kafka_util = KafkaUtil()
