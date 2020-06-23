@@ -50,5 +50,5 @@ class EventPartition(Enum):
 
     # PAYMENTS
     LOAN_INFO = 64
-    LOAN_DATA = 256
+    LOAN_DATA = 64
     VIRTUAL_ACCOUNT = 64
