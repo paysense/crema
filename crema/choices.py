@@ -27,6 +27,7 @@ class EventType(Enum):
     VIRTUAL_ACCOUNT = "VIRTUAL_ACCOUNT"
 
     # INTERNAL TOPICS
+    # All internal topics start with prefix I_
     I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
 
 
