@@ -26,6 +26,10 @@ class EventType(Enum):
     LOAN_DATA = "LOAN_DATA"
     VIRTUAL_ACCOUNT = "VIRTUAL_ACCOUNT"
 
+    # INTERNAL TOPICS
+    # All internal topics start with prefix I_
+    I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
+
 
 class EventPartition(Enum):
     # PSCORE
@@ -52,3 +56,6 @@ class EventPartition(Enum):
     LOAN_INFO = 64
     LOAN_DATA = 64
     VIRTUAL_ACCOUNT = 64
+
+    # INTERNAL TOPICS
+    I_LOAN_APPLICATION_INDEX = 256
