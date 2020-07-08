@@ -47,6 +47,8 @@ class EventPartition(Enum):
     BANK_ACCOUNT = 64
     INCOME_VERIFICATION = 64
     USER_REFERENCES = 64
+    ASSISTANCE_REMINDER = 64
+    ASSISTANCE_ACTIVITY = 64
 
     # AMS
     ASSESSMENT = 64
@@ -62,3 +64,4 @@ class EventPartition(Enum):
 
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 256
+    I_LEAD_INDEX = 256
