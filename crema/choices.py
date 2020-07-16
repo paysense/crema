@@ -33,7 +33,6 @@ class EventType(Enum):
     # All internal topics start with prefix I_
     I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
     I_LEAD_INDEX = "I_LEAD_INDEX"
-    I_MESSAGE_INDEX = "I_MESSAGE_INDEX"
 
 
 class EventPartition(Enum):
@@ -68,4 +67,3 @@ class EventPartition(Enum):
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 256
     I_LEAD_INDEX = 256
-    I_MESSAGE_INDEX = 128
