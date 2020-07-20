@@ -78,9 +78,13 @@ class KafkaUtil:
 
         uid = str(uuid.uuid4())
         start_time = time.time()
-        master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
-        partition = PartitionHashing.get_partition(master_user_id, event_type)
+        if event_type == 'SMS':
+            device_id = data["meta_data"]["device_id"]
+            partition = PartitionHashing.get_partition(device_id, event_type)
+        else:
+            master_user_id = data["meta_data"]["user_id"]
+            partition = PartitionHashing.get_partition(master_user_id, event_type)
         LOGGER.debug(
             "time take to get partition for uid:{uid} {t}".format(
                 uid=uid, t=(time.time() - start_time)
@@ -102,9 +106,13 @@ class KafkaUtil:
             LOGGER.info("Please set ENABLE_KAFKA env variable to True to push events")
             return
 
-        master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
-        partition = PartitionHashing.get_partition(master_user_id, event_type)
+        if event_type == 'SMS':
+            device_id = data["meta_data"]["device_id"]
+            partition = PartitionHashing.get_partition(device_id, event_type)
+        else:
+            master_user_id = data["meta_data"]["user_id"]
+            partition = PartitionHashing.get_partition(master_user_id, event_type)
 
         future = self.producer.send(event_type, data, partition=partition,)
         try:
