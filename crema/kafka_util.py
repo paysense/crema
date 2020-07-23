@@ -1,3 +1,4 @@
+import atexit
 import json
 import logging
 import time
@@ -26,6 +27,14 @@ class KafkaUtil:
         self._kafka_producer = None
         self.kafka_vars = kafka_vars or {}
 
+    def flush_messages(self):
+        # it should be registered at atexit only after KafkaProducer gets initialized. KafkaProducer has its own
+        # set of cleanup functions registered at atexit e.g. closing kafka connection. This function should be executed
+        # at first among other registered function as it needs kafka connection to send buffered events to kafka
+        if self._kafka_producer:
+            self._kafka_producer.flush()
+
+
     @property
     def producer(self):
         # initialise kafkaProducer only when its about to send events. It avoids creating unnecessary connection
@@ -37,6 +46,7 @@ class KafkaUtil:
                 api_version=(8,),
                 **self.kafka_vars
             )
+            atexit.register(self.flush_messages)
         return self._kafka_producer
 
     def _success_callback(self, data, record_metadata):
@@ -53,7 +63,7 @@ class KafkaUtil:
             )
         )
 
-    def _error_callback(self, exception, data, partition):
+    def _error_callback(self, data, partition, exception):
         if isinstance(exception, KafkaError):
             msg = "{e}, partition: {partition}, data: {data}".format(
                 e=str(exception), partition=partition, data=data
@@ -78,9 +88,13 @@ class KafkaUtil:
 
         uid = str(uuid.uuid4())
         start_time = time.time()
-        master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
-        partition = PartitionHashing.get_partition(master_user_id, event_type)
+        if event_type == 'SMS':
+            device_id = data["meta_data"]["device_id"]
+            partition = PartitionHashing.get_partition(device_id, event_type)
+        else:
+            master_user_id = data["meta_data"]["user_id"]
+            partition = PartitionHashing.get_partition(master_user_id, event_type)
         LOGGER.debug(
             "time take to get partition for uid:{uid} {t}".format(
                 uid=uid, t=(time.time() - start_time)
@@ -102,9 +116,13 @@ class KafkaUtil:
             LOGGER.info("Please set ENABLE_KAFKA env variable to True to push events")
             return
 
-        master_user_id = data["meta_data"]["user_id"]
         event_type = data["meta_data"]["event_type"]
-        partition = PartitionHashing.get_partition(master_user_id, event_type)
+        if event_type == 'SMS':
+            device_id = data["meta_data"]["device_id"]
+            partition = PartitionHashing.get_partition(device_id, event_type)
+        else:
+            master_user_id = data["meta_data"]["user_id"]
+            partition = PartitionHashing.get_partition(master_user_id, event_type)
 
         future = self.producer.send(event_type, data, partition=partition,)
         try:
