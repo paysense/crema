@@ -1,3 +1,4 @@
+import atexit
 import json
 import logging
 import time
@@ -26,6 +27,14 @@ class KafkaUtil:
         self._kafka_producer = None
         self.kafka_vars = kafka_vars or {}
 
+    def flush_messages(self):
+        # it should be registered at atexit only after KafkaProducer gets initialized. KafkaProducer has its own
+        # set of cleanup functions registered at atexit e.g. closing kafka connection. This function should be executed
+        # at first among other registered function as it needs kafka connection to send buffered events to kafka
+        if self._kafka_producer:
+            self._kafka_producer.flush()
+
+
     @property
     def producer(self):
         # initialise kafkaProducer only when its about to send events. It avoids creating unnecessary connection
@@ -37,6 +46,7 @@ class KafkaUtil:
                 api_version=(8,),
                 **self.kafka_vars
             )
+            atexit.register(self.flush_messages)
         return self._kafka_producer
 
     def _success_callback(self, data, record_metadata):
@@ -53,7 +63,7 @@ class KafkaUtil:
             )
         )
 
-    def _error_callback(self, exception, data, partition):
+    def _error_callback(self, data, partition, exception):
         if isinstance(exception, KafkaError):
             msg = "{e}, partition: {partition}, data: {data}".format(
                 e=str(exception), partition=partition, data=data
