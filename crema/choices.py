@@ -35,6 +35,7 @@ class EventType(Enum):
     # All internal topics start with prefix I_
     I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
     I_LEAD_INDEX = "I_LEAD_INDEX"
+    I_SALES_FORCE = "I_SALES_FORCE"
 
 
 class EventPartition(Enum):
@@ -54,7 +55,7 @@ class EventPartition(Enum):
     ASSISTANCE_ACTIVITY = 16
     WHATSAPP_COMM = 8
     OPS_COMMENT = 8
-    SMS = 64
+    SMS = 8
 
     # AMS
     ASSESSMENT = 16
@@ -71,3 +72,4 @@ class EventPartition(Enum):
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 64
     I_LEAD_INDEX = 64
+    I_SALES_FORCE = 64
