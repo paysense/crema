@@ -26,6 +26,7 @@ class EventType(Enum):
 
     # AMS
     ASSESSMENT = "ASSESSMENT"
+    PRODUCT_ELIGIBILITY = "PRODUCT_ELIGIBILITY"
 
     # USER_ACTIVITY
     USER_ACTIVITY = "USER_ACTIVITY"
@@ -40,6 +41,7 @@ class EventType(Enum):
     I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
     I_LEAD_INDEX = "I_LEAD_INDEX"
     I_SALES_FORCE = "I_SALES_FORCE"
+    I_CLEVER_TAP = "I_CLEVER_TAP"
 
 
 class EventPartition(Enum):
@@ -81,3 +83,4 @@ class EventPartition(Enum):
     I_LOAN_APPLICATION_INDEX = 64
     I_LEAD_INDEX = 64
     I_SALES_FORCE = 64
+    I_CLEVER_TAP = 64
