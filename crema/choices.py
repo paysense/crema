@@ -41,6 +41,9 @@ class EventType(Enum):
     LOAN_INFO_DYNAMIC = "LOAN_INFO_DYNAMIC"
     VIRTUAL_ACCOUNT = "VIRTUAL_ACCOUNT"
 
+    # Hades
+    LOAN_ALLOCATION = "LOAN_ALLOCATION"
+
     # INTERNAL TOPICS
     # All internal topics start with prefix I_
     I_LOAN_APPLICATION_INDEX = "I_LOAN_APPLICATION_INDEX"
@@ -88,6 +91,9 @@ class EventPartition(Enum):
     LOAN_INFO_STATIC = 8
     LOAN_INFO_DYNAMIC = 32
     VIRTUAL_ACCOUNT = 8
+
+    # Hades
+    LOAN_ALLOCATION = 8
 
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 64
