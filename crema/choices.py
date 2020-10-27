@@ -51,6 +51,9 @@ class EventType(Enum):
     I_SALES_FORCE = "I_SALES_FORCE"
     I_CLEVER_TAP = "I_CLEVER_TAP"
 
+    # TELEMETRY
+    RAW_SMS = "RAW_SMS"
+
 
 class EventPartition(Enum):
     # PSCORE
@@ -100,3 +103,6 @@ class EventPartition(Enum):
     I_LEAD_INDEX = 64
     I_SALES_FORCE = 64
     I_CLEVER_TAP = 64
+
+    # TELEMETRY
+    RAW_SMS = 8
