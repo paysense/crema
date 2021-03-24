@@ -76,7 +76,6 @@ class EventPartition(Enum):
     ASSISTANCE_ACTIVITY = 16
     WHATSAPP_COMM = 8
     OPS_COMMENT = 8
-    SMS = 8
     ASSISTANCE_AGENT_CALL = 8
     DEVICE_INSTALLATION = 8
     USER_AGENT_ASSIGNMENT = 8
@@ -84,11 +83,13 @@ class EventPartition(Enum):
     LOAN_RESTRUCTURE = 8
     MORATORIUM = 8
     KYC_VERIFICATION = 8
+    COMMUNICATION = 8
 
     # AMS
     ASSESSMENT = 16
     PRODUCT_ELIGIBILITY = 8
     BUREAU_ADDRESS = 8
+    SMS = 8
 
     # NBFC AMS
     NBFC_ASSESSMENT = 16
@@ -100,6 +101,7 @@ class EventPartition(Enum):
     LOAN_INFO_STATIC = 8
     LOAN_INFO_DYNAMIC = 32
     VIRTUAL_ACCOUNT = 8
+    LOAN_REPAYMENT = 8
 
     # Hades
     LOAN_ALLOCATION = 8
