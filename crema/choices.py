@@ -83,7 +83,7 @@ class EventPartition(Enum):
     LOAN_RESTRUCTURE = 8
     MORATORIUM = 8
     KYC_VERIFICATION = 8
-    COMMUNICATION = 8
+    COMMUNICATION = 16
 
     # AMS
     ASSESSMENT = 16
@@ -101,7 +101,7 @@ class EventPartition(Enum):
     LOAN_INFO_STATIC = 8
     LOAN_INFO_DYNAMIC = 32
     VIRTUAL_ACCOUNT = 8
-    LOAN_REPAYMENT = 8
+    LOAN_REPAYMENT = 16
 
     # Hades
     LOAN_ALLOCATION = 8
