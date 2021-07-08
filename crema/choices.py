@@ -58,6 +58,10 @@ class EventType(Enum):
     # TELEMETRY
     RAW_SMS = "RAW_SMS"
 
+    # PROMPT TOPICS
+    # All topics where a prompt/trigger needs to be sent to a service to take some action will start with P_
+    P_REASSESSMENT = "P_REASSESSMENT"
+
 
 class EventPartition(Enum):
     # PSCORE
@@ -114,3 +118,6 @@ class EventPartition(Enum):
 
     # TELEMETRY
     RAW_SMS = 8
+
+    # PROMPT TOPICS
+    P_REASSESSMENT = 8
