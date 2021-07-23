@@ -35,6 +35,7 @@ class EventType(Enum):
 
     # NBFC AMS
     NBFC_ASSESSMENT = "NBFC_ASSESSMENT"
+    USER_OBLIGATION = "USER_OBLIGATION"
 
     # USER_ACTIVITY
     USER_ACTIVITY = "USER_ACTIVITY"
@@ -60,7 +61,7 @@ class EventType(Enum):
 
     # PROMPT TOPICS
     # All topics where a prompt/trigger needs to be sent to a service to take some action will start with P_
-    P_REASSESSMENT = "P_REASSESSMENT"
+    P_ACTION = "P_ACTION"
 
 
 class EventPartition(Enum):
@@ -97,6 +98,7 @@ class EventPartition(Enum):
 
     # NBFC AMS
     NBFC_ASSESSMENT = 16
+    USER_OBLIGATION = 8
 
     # USER_ACTIVITY
     USER_ACTIVITY = 128
@@ -120,4 +122,4 @@ class EventPartition(Enum):
     RAW_SMS = 8
 
     # PROMPT TOPICS
-    P_REASSESSMENT = 8
+    P_ACTION = 8
