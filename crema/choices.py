@@ -48,6 +48,7 @@ class EventType(Enum):
 
     # Hades
     LOAN_ALLOCATION = "LOAN_ALLOCATION"
+    PL_COMMUNICATION = "PL_COMMUNICATION"
 
     # INTERNAL TOPICS
     # All internal topics start with prefix I_
@@ -55,6 +56,7 @@ class EventType(Enum):
     I_LEAD_INDEX = "I_LEAD_INDEX"
     I_SALES_FORCE = "I_SALES_FORCE"
     I_CLEVER_TAP = "I_CLEVER_TAP"
+    I_HADES = "I_HADES"
 
     # TELEMETRY
     RAW_SMS = "RAW_SMS"
@@ -111,12 +113,14 @@ class EventPartition(Enum):
 
     # Hades
     LOAN_ALLOCATION = 8
+    PL_COMMUNICATION = 8
 
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 64
     I_LEAD_INDEX = 64
     I_SALES_FORCE = 64
     I_CLEVER_TAP = 64
+    I_HADES = 64
 
     # TELEMETRY
     RAW_SMS = 8
