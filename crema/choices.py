@@ -113,14 +113,14 @@ class EventPartition(Enum):
 
     # Hades
     LOAN_ALLOCATION = 8
-    PL_COMMUNICATION = 8
+    PL_COMMUNICATION = 4
 
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 64
     I_LEAD_INDEX = 64
     I_SALES_FORCE = 64
     I_CLEVER_TAP = 64
-    I_HADES = 64
+    I_HADES = 8
 
     # TELEMETRY
     RAW_SMS = 8
