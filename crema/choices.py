@@ -36,6 +36,7 @@ class EventType(Enum):
     # NBFC AMS
     NBFC_ASSESSMENT = "NBFC_ASSESSMENT"
     USER_OBLIGATION = "USER_OBLIGATION"
+    AML = "AML"
 
     # USER_ACTIVITY
     USER_ACTIVITY = "USER_ACTIVITY"
@@ -101,6 +102,7 @@ class EventPartition(Enum):
     # NBFC AMS
     NBFC_ASSESSMENT = 16
     USER_OBLIGATION = 8
+    AML = 8
 
     # USER_ACTIVITY
     USER_ACTIVITY = 128
