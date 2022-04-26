@@ -63,6 +63,7 @@ class EventType(Enum):
     I_SALES_FORCE = "I_SALES_FORCE"
     I_CLEVER_TAP = "I_CLEVER_TAP"
     I_HADES = "I_HADES"
+    I_LEAD_SQUARED = "I_LEAD_SQUARED"
 
     # TELEMETRY
     RAW_SMS = "RAW_SMS"
@@ -134,6 +135,7 @@ class EventPartition(Enum):
     I_SALES_FORCE = 64
     I_CLEVER_TAP = 64
     I_HADES = 8
+    I_LEAD_SQUARED = 32
 
     # TELEMETRY
     RAW_SMS = 8
