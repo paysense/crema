@@ -122,7 +122,6 @@ class EventPartition(Enum):
     XPRESS_REASSESSMENT = 8
     USER_UNDERWRITING_DATA = 4
 
-
     # USER_ACTIVITY
     USER_ACTIVITY = 128
 
@@ -137,7 +136,7 @@ class EventPartition(Enum):
 
     # Hades
     LOAN_ALLOCATION = 8
-    PL_COMMUNICATION = 4
+    PL_COMMUNICATION = 16
 
     # INTERNAL TOPICS
     I_LOAN_APPLICATION_INDEX = 64
